@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#/ Usage: script/protoc [--build]
+#/
+#/ Generate code from .proto files
+
+set -ex
+cd "$(dirname "$0")/.."
+
+force_build="$1"
+image=$(docker image inspect example-protoc > /dev/null 2>&1 || echo "no-image")
+
+if [[ $force_build == "--build" || $image == "no-image" ]]; then
+    docker build --platform=linux/amd64 -t example-protoc --target protoc -f Dockerfile.protoc .
+fi
+
+PARENT_DIR=$(dirname $(pwd))
+
+export PROJECT="github.com/github/azure-functions-protobuf"
+
+docker run --platform=linux/amd64 --rm --user $(id -u):$(id -g) -v $(pwd):/go/src/$PROJECT -w /go/src/$PROJECT \
+    example-protoc \
+    --proto_path=proto --twirp_out=/go/src --gofast_out=/go/src \
+    api.proto
+
+go mod tidy
+go mod vendor
+

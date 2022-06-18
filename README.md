@@ -1,6 +1,6 @@
 # Azure Function and Protobuf using Twirp PoC
 
-This is a demo app as a PoC to work with Azure Functions[AzureFunctions] and protobufs[protobufs] via Twirp[Twirp].
+This is a demo app as a PoC to work with [Azure Functions][AzureFunctions] and [protobufs][protobufs] via [Twirp][Twirp].
 
 ### Setup
 

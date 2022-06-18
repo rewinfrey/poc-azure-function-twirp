@@ -29,6 +29,13 @@ cd poc-azure-function-twirp
 bin/runner
 ```
 
+If everything is working as intended the expected output is:
+
+```shell
+bin/runner
+Hello World
+```
+
 [AzureCoreTools]: https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local
 [AzureFunctions]: https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview
 [Twirp]: https://twitchtv.github.io/twirp/
